@@ -1,0 +1,59 @@
+{
+  "name": "codex-account-switcher",
+  "displayName": "Codex Account Switcher",
+  "description": "Save multiple Codex (ChatGPT) logins and switch between them without logging in again.",
+  "version": "0.2.0",
+  "publisher": "local",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      { "command": "codexAccounts.switch", "title": "Switch Account", "category": "Codex Accounts" },
+      { "command": "codexAccounts.add", "title": "Add Account (log in with another account)", "category": "Codex Accounts" },
+      { "command": "codexAccounts.saveCurrent", "title": "Save Current Login", "category": "Codex Accounts" },
+      { "command": "codexAccounts.refreshUsage", "title": "Refresh Usage", "category": "Codex Accounts" },
+      { "command": "codexAccounts.rename", "title": "Rename Account", "category": "Codex Accounts" },
+      { "command": "codexAccounts.remove", "title": "Remove Account", "category": "Codex Accounts" }
+    ],
+    "configuration": {
+      "title": "Codex Account Switcher",
+      "properties": {
+        "codexAccounts.codexHome": {
+          "type": "string",
+          "default": "",
+          "description": "Folder containing Codex's auth.json. Leave empty to use $CODEX_HOME or ~/.codex."
+        },
+        "codexAccounts.loginCommand": {
+          "type": "string",
+          "default": "codex login",
+          "description": "Command run in a terminal by 'Add Account'."
+        },
+        "codexAccounts.usageRefreshMinutes": {
+          "type": "number",
+          "default": 5,
+          "description": "How often to poll usage for all saved accounts (minutes). Applies after reload."
+        },
+        "codexAccounts.warnThreshold": {
+          "type": "number",
+          "default": 90,
+          "description": "Highlight the status bar and suggest switching when any usage window reaches this percent. 0 disables."
+        },
+        "codexAccounts.reloadAfterSwitch": {
+          "type": "boolean",
+          "default": true,
+          "description": "Offer to reload the window after switching so the Codex extension picks up the new login."
+        }
+      }
+    }
+  }
+}
+
